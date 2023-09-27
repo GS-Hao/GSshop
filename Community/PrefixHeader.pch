@@ -1,0 +1,75 @@
+//
+//  PrefixHeader.pch
+//  php
+//
+//  Created by wei cui on 2019/12/3.
+//  Copyright © 2019 wei cui. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import "UIView+Extension.h"
+#import "AppDelegate.h"
+#import "AIDCoreDataManager.h"
+#import <CoreData/CoreData.h>
+#import "NSString+MUCommon.h"
+#import "CLAlertView.h"
+#import "ColorUtils.h"
+#import "Session.h"
+
+//#if DEBUG
+//#define CWLog(...) NSLog(__VA_ARGS__)
+//#else
+//#CWLog(...)
+//#endif
+//
+//#define CWLogFunc CWLog(@"%s", __func__)
+
+#define CWRGBColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0];
+//#define CWGlobalBgColor CWRGBColor(223, 223, 223)
+#define CWGlobalBgColor bgColor
+#define CWScreenW [UIScreen mainScreen].bounds.size.width
+#define CWScreenH [UIScreen mainScreen].bounds.size.height
+#define CWISIphone (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define CWISIphoneX CWScreenW >=375.0f && CWScreenH >=812.0f&& CWISIphone
+#define kNavBarAndStatusBarHeight (CGFloat)(CWISIphoneX?(88.0):(64.0))
+#define kStatusBarHeight (CGFloat)(CWISIphoneX?(44.0):(20.0))
+
+#define bgColor [UIColor colorWithPatternImage:[UIImage imageNamed:@"my_bg"]]
+
+#define StrongObj(o) autoreleasepool{} __strong typeof(o) o = o##Weak;
+#define WeakObj(o) try{}@finally{} __weak typeof(o) o##Weak = o;
+
+/*TabBar高度*/
+#define kTabBarHeight (CGFloat)(CWISIphoneX?(49.0 + 34.0):(49.0))
+/*导航条和Tabbar总高度*/
+#define kNavAndTabHeight (kNavBarAndStatusBarHeight + kTabBarHeight)
+
+//判断是类
+#define GSisKindOfClass(obj,cls) ([obj isKindOfClass:[cls class]])
+
+//判断数组元素是否为空
+#define NOT_NULL(v) (v && (v) != (id)[NSNull null] )
+
+#define KUserDefaults [NSUserDefaults standardUserDefaults]
+#define KTOKEN_STORE [KUserDefaults objectForKey:@"KTOKEN_STORE_LOGIN"]
+#define KSAVEUSERWENZHENINFO @"saveUserWenZhenXinXi"
+
+#define KTengXunDingWei_weidu  [KUserDefaults objectForKey:@"TXDiTuweidu"]
+#define KTengXunDingWei_Jingdu  [KUserDefaults objectForKey:@"TXDiTuJingdu"]
+#define KTengXunDingWei_Name  [KUserDefaults objectForKey:@"TXDiTuName"]
+#define KTengXunDingWei_Address  [KUserDefaults objectForKey:@"TXDiTuAddress"]
+ #define KTengXunDingWei_City    [KUserDefaults objectForKey:@"TXDiTuweiduCity"]
+
+#define KTengXunDingWei_weidu_Select [KUserDefaults objectForKey:@"TXDiTuweidu_Select"]
+ #define KTengXunDingWei_City_Select    [KUserDefaults objectForKey:@"TXDiTuweiduCity_Select"]
+#define KTengXunDingWei_Jingdu_Select   [KUserDefaults objectForKey:@"TXDiTuJingdu_Select"]
+#define KTengXunDingWei_Address_Select [KUserDefaults objectForKey:@"TXDiTuAddress_Select"]
+
+//判断字符串是否为空
+#define GSStringIsEmpty(str) [NSString isEmptyString:str]
+
+#endif /* PrefixHeader_pch */
